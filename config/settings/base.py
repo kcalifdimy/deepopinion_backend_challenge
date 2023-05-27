@@ -65,13 +65,11 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
        "rest_framework",
-    
 ]
 
 LOCAL_APPS = [
-   "deepopinion_backend_challenge.data_app.apps.UsersConfig",
+   "deepopinion_backend_challenge.data_app.apps.DataAppConfig",
 
-    # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -170,7 +168,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "deepopinion_backend_challenge.users.context_processors.allauth_settings",
+                # "deepopinion_backend_challenge.users.context_processors.allauth_settings",
             ],
         },
     }
@@ -236,15 +234,17 @@ LOGGING = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.AllowAny'
-#     ],
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework_simplejwt.authentication.JWTAuthentication'
-#     ],
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#     'PAGE_SIZE': 10
-# }
+REST_FRAMEWORK = {
+    #  'DEFAULT_PERMISSION_CLASSES': [
+    #        'rest_framework.parsers.JSONParser',
+    #        'rest_framework.parsers.MultiPartParser',
+    #        'rest_framework.parsers.FormParser',
+    # ],
+   
+    
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 # CORS_ORIGIN_ALLOW_ALL = True
+

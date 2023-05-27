@@ -25,17 +25,7 @@ if __name__ == "__main__":
 
     # This allows easy placement of apps within the interior
     # deepopinion_backend_challenge directory.
-    BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-
-    # current_path = Path(__file__).parent.resolve()
-    # sys.path.append(str(current_path / "deepopinion_backend_challenge/" "deepopinion_backend_challenge"))
-
-    current_path = (os.path.join(BASE_DIR, "deepopinion_backend_challenge/", "deepopinion_backend_challenge"))
-    FIXTURE_DIR_PATH = (os.path.join(ROOT_DIR, "backend-coding-challenge/", "fixtures"))
-
-
-    sys.path.append(str(current_path))
-
-
+    current_path = Path(__file__).parent.resolve()
+    sys.path.append(str(current_path / "deepopinion_backend_challenge"))
 
     execute_from_command_line(sys.argv)

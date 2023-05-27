@@ -7,7 +7,8 @@ from django.views import defaults as default_views
 urlpatterns = [
        # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
+    path('api/v1/', include("deepopinion_backend_challenge.urls")),
+
     
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

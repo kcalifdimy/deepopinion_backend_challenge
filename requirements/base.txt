@@ -3,7 +3,7 @@ Pillow==9.5.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
 redis==4.5.4  # https://github.com/redis/redis-py
 hiredis==2.2.2  # https://github.com/redis/hiredis-py
-
+pandas==2.0.1
 # Django
 # ------------------------------------------------------------------------------
 django==4.1.9  # pyup: < 4.2  # https://www.djangoproject.com/

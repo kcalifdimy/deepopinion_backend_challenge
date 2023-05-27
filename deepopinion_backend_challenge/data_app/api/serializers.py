@@ -1,5 +1,13 @@
+import pandas as pd
 from rest_framework import serializers    
-from deepopinion_backend_challenge.data_app.models import Tag, Data
+from deepopinion_backend_challenge.data_app.models import Data, Tag
+# from deepopinion_backend_challenge.data_app.models.tags import Tag
+
+
+
+
+class FileUploadSerializer(serializers.Serializer):
+    file_upload = serializers.FileField()
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -8,6 +16,7 @@ class TagSerializer(serializers.ModelSerializer):
     fields = ("id", "aspect", "sentiment")
 
 class DataSerializer(serializers.ModelSerializer):
+
     # This line is what changed:
     tags = TagSerializer(many=True)
 
@@ -18,8 +27,7 @@ class DataSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # create product
         tags_data = validated_data.pop('tags')
-        data = Data.objects.create(**validated_data)
-        #user = self.context['request'].user
+        data = Data.objects.create(**validated_data) 
         for tag_data in tags_data:
             new_data_tags = Tag.objects.create(data=data, tags=tag_data)
         return data
