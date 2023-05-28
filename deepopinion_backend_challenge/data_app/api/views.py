@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import io
+import openpyxl
 from rest_framework import parsers
 from rest_framework import viewsets
 from rest_framework.views import APIView
@@ -21,11 +22,17 @@ class CSVUploadView(generics.CreateAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         file = serializer.validated_data['file_upload']
-        file_data = io.StringIO(file.read().decode("utf-8"))
-        csv_data = pd.read_csv(file_data)
-        for _, row in csv_data.iterrows():
-            new_file = Data(text=row['Text'])
+        # file_data = io.StringIO(file.read().decode("utf-8"))
+        df = pd.read_excel(file, engine='openpyxl')
+
+        for _, row in df.iterrows():
+            new_file = Data(text=row['Account'])
             new_file.save()
+
+        # csv_data = pd.read_csv(file_data)
+        # for _, row in csv_data.iterrows():
+        #     new_file = Data(text=row['Text'])
+        #     new_file.save()
         return Response({"status": "success"}, status.HTTP_201_CREATED)
 
 
