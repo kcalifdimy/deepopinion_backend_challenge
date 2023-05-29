@@ -1,4 +1,4 @@
-from .datas import Data
+from .datas import Text
 from .tags import Tag
 
 

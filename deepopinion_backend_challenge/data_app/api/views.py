@@ -13,7 +13,7 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import parser_classes
-from deepopinion_backend_challenge.data_app.models import  Data
+from deepopinion_backend_challenge.data_app.models import  Text
 from .serializers import DataSerializer, FileUploadSerializer
 from deepopinion_backend_challenge.utils.check_file import is_csv_file, is_excel_file
 
@@ -35,7 +35,7 @@ class EXCELUploadView(generics.CreateAPIView):
             excel_validator(file_validator)
             df = pd.read_excel(file, engine='openpyxl')
             for _, row in df.iterrows():
-                new_file = Data(text=row['Account'])
+                new_file = Text(text=row['Account'])
                 new_file.save()        
         except Exception as e:
                 return Response({"status": "only excel file is excepted"})
@@ -60,7 +60,7 @@ class CSVUploadView(generics.CreateAPIView):
             file_data = io.StringIO(file.read().decode("utf-8"))
             csv_data = pd.read_csv(file_data)
             for _, row in csv_data.iterrows():
-                new_file = Data(text=row['Text'])
+                new_file = Text(text=row['Text'])
                 new_file.save()                
         except Exception as e:
                 return Response({"status": "only csv file is excepted"})
@@ -69,15 +69,11 @@ class CSVUploadView(generics.CreateAPIView):
 
     
 class CSVUploadViewSet(viewsets.ModelViewSet):
-    queryset = Data.objects.all()
+    queryset = Text.objects.all()
     serializer_class = DataSerializer
     lookup_field = 'id'  
-    parser_classes = [parsers.MultiPartParser, parsers.FormParser, parsers.FileUploadParser]
-    
+    # parser_classes = [parsers.MultiPartParser, parsers.FormParser, parsers.FileUploadParser]
 
- # if csv_validator(file):
-        #     file_data = io.StringIO(file.read().decode("utf-8"))
-        #     csv_data = pd.read_csv(file_data)
-        #     for _, row in csv_data.iterrows():
-        #         new_file = Data(text=row['Text'])
-        #         new_file.save()
+
+
+   
