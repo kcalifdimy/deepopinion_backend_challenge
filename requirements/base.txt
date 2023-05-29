@@ -5,6 +5,14 @@ redis==4.5.4  # https://github.com/redis/redis-py
 hiredis==2.2.2  # https://github.com/redis/hiredis-py
 pandas==2.0.1
 openpyxl==3.1.2
+django-upload-validator==1.1.6
+pylibmagic==0.4.0
+python-magic==0.4.27
+# python-libmagic 0.4.0
+
+
+
+
 # Django
 # ------------------------------------------------------------------------------
 django==4.1.9  # pyup: < 4.2  # https://www.djangoproject.com/
