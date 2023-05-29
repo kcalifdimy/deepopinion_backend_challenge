@@ -13,8 +13,10 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import parser_classes
-from deepopinion_backend_challenge.data_app.models import  Text
-from .serializers import DataSerializer, FileUploadSerializer
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from deepopinion_backend_challenge.data_app.models import  Text, Tag
+from .serializers import DataSerializer, FileUploadSerializer, TagSerializer,  TagSerializers
 from deepopinion_backend_challenge.utils.check_file import is_csv_file, is_excel_file
 
 class EXCELUploadView(generics.CreateAPIView):
@@ -72,8 +74,29 @@ class CSVUploadViewSet(viewsets.ModelViewSet):
     queryset = Text.objects.all()
     serializer_class = DataSerializer
     lookup_field = 'id'  
-    # parser_classes = [parsers.MultiPartParser, parsers.FormParser, parsers.FileUploadParser]
+    #parser_classes = [parsers.MultiPartParser, parsers.FormParser, parsers.FileUploadParser]get
 
 
 
+    @action(detail=False)
+    def get_aspects(self, request):
+        aspect_data = Tag.objects.values('aspect')
+        all_aspect = []
+        for value in aspect_data:
+               value = value['aspect']
+               all_aspect.append(value)
+
+        return Response(all_aspect)
+   
+
+
+    @action(detail=False)
+    def get_sentiment(self, request):
+        sentiment_data = Tag.objects.values('sentiment')
+        all_sentiment = []
+        for value in sentiment_data:
+               value = value['sentiment']
+               all_sentiment.append(value)
+
+        return Response(all_sentiment)
    
