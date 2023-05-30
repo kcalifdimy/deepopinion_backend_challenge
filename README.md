@@ -22,9 +22,10 @@ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 4. To upload Excel file, make post request to this endpoint: http://0.0.0.0:8000/api/v1/datas/upload-excel/ 
 5. To get all data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/
 6. To get single data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/{id}
-7. To get all available sentiment, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_sentiment/
-8. To get all available aspect, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_aspects/
-9. Make sure the CSV and Excel file header name is Text, for data to be uploaded  
+7. To add and chaange tags to data, make a put request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/{id}
+8. To get all available sentiment, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_sentiment/
+9. To get all available aspect, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_aspects/
+10. Make sure the CSV and Excel file header name is Text, for data to be uploaded  
 
 ## What to Do
 1. I was supposed to include download feature for CSV and Excel file 
