@@ -5,33 +5,32 @@ from deepopinion_backend_challenge.data_app.models import Text, Tag
 
 
 
-
 class FileUploadSerializer(serializers.Serializer):
+    """
+    Created a Serializer to upload files
+    """
     file_upload = serializers.FileField()
 
 
 class TagSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Tag
-    fields = ("id", "aspect", "sentiment")
-
-
-class TagSerializers(serializers.ModelSerializer):
-  class Meta:
-    model = Tag
-    fields = ("aspect")
+    """
+    Created a Serializer for tag features
+    """
+    class Meta:
+        model = Tag
+        fields = ("id", "aspect", "sentiment")
 
 
 
 class DataSerializer(serializers.ModelSerializer):
+    """
+    Created a Dataserializer that helps to display all datas and tags
+    """
+    
 
-    # This line is what changed:
     tags = TagSerializer(many=True)
 
-    class Meta:
-        model = Text
-        fields = ("id", "text", "tags")
-
+    # This function create data with it respective tags
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
         data = Text.objects.create(**validated_data) 
@@ -39,6 +38,7 @@ class DataSerializer(serializers.ModelSerializer):
             new_data_tags = Tag.objects.create(data=data, tags=tag_data)
         return data
     
+    # This function change/add tags to data 
     def update(self, instance, validated_data):
         tag_data = validated_data.pop('tags')
         instance = super().update(instance, validated_data)
