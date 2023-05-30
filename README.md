@@ -3,19 +3,34 @@
 This project is a DeepOpinion Challenge: Sr.
 
 
-## Basic Commands
+# Basic Commands
 
-# Build Stack
-$ docker-compose -f local.yml build
+## Build Stack
+docker-compose -f local.yml build
 
-# Run the Stack 
-$ docker-compose -f local.yml up
+## Run the Stack 
+docker-compose -f local.yml up
 
-# Execute Management Commands
-$ docker-compose -f local.yml run --rm django python manage.py migrate
-$ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+## Execute Management Commands
+docker-compose -f local.yml run --rm django python manage.py migrate
+docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
+## How to Use this Project
+1. Run the build command 
+2. Run the stack command to start the project
+3. To upload CSV file, make post request to this endpoint: http://0.0.0.0:8000/api/v1/datas/upload-csv/ 
+4. To upload Excel file, make post request to this endpoint: http://0.0.0.0:8000/api/v1/datas/upload-excel/ 
+5. To get all data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/
+6. To get single data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/{id}
+7. To get all available sentiment, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_sentiment/
+8. To get all available aspect, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_aspect/
+9. Make sure the CSV and Excel file header name is Text, for data to be uploaded  
 
+## What to Do
+1. I was supposed to include download feature for CSV and Excel file 
+2. I was supposed to add asynchronous task to all the request in the project but because of time i couldn't do that
+3. I was supposed to write test cases for the programme but because of time I couldn't do it. 
+4. I was supposed to cache end point that retrieve data from the database but due to time I couldn't do it. 
 
 ### Type checks
 
