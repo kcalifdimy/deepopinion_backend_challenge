@@ -1,12 +1,21 @@
 # deepopinion_backend_challenge
 
 This project is a DeepOpinion Challenge: Sr.
-# 
-## Settings
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
 
 ## Basic Commands
+
+# Build Stack
+$ docker-compose -f local.yml build
+
+# Run the Stack 
+$ docker-compose -f local.yml up
+
+# Execute Management Commands
+$ docker-compose -f local.yml run --rm django python manage.py migrate
+$ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+
+
 
 ### Type checks
 
