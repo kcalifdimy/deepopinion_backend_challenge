@@ -2,24 +2,35 @@
 
 This project is a DeepOpinion Challenge: Sr.
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-## Settings
+# Basic Commands
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+## Build Stack
+docker-compose -f local.yml build
 
-## Basic Commands
+## Run the Stack 
+docker-compose -f local.yml up
 
-### Setting Up Your Users
+## Execute Management Commands
+docker-compose -f local.yml run --rm django python manage.py migrate
+docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+## How to Use this Project
+1. Run the build command 
+2. Run the stack command to start the project
+3. To upload CSV file, make post request to this endpoint: http://0.0.0.0:8000/api/v1/datas/upload-csv/ 
+4. To upload Excel file, make post request to this endpoint: http://0.0.0.0:8000/api/v1/datas/upload-excel/ 
+5. To get all data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/
+6. To get single data, make a get request to this endpoint: http://0.0.0.0:8000/api/v1/datas/data/{id}
+7. To get all available sentiment, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_sentiment/
+8. To get all available aspect, make a get rquest to the endpoint: http://0.0.0.0:8000/api/v1/datas/data/get_aspects/
+9. Make sure the CSV and Excel file header name is Text, for data to be uploaded  
 
-- To create a **superuser account**, use this command:
-
-      $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+## What to Do
+1. I was supposed to include download feature for CSV and Excel file 
+2. I was supposed to add asynchronous task to all the request in the project but because of time i couldn't do that
+3. I was supposed to write test cases for the programme but because of time I couldn't do it. 
+4. I was supposed to cache end point that retrieve data from the database but due to time I couldn't do it. 
 
 ### Type checks
 
